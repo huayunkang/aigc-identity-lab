@@ -5,3 +5,7 @@
 @media(max-width:390px){.hero-meta{gap:8px}.gallery-art{height:162px}.gallery-info h3{font-size:15px}.poster-main h2{font-size:24px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 @media print{body{background:white}.site-header,footer,.poster-toolbar,.ambient{display:none!important}.container{width:100%}.poster-page{padding:0}.poster{width:100%;height:100vh;aspect-ratio:auto;border:0;box-shadow:none;print-color-adjust:exact;-webkit-print-color-adjust:exact}@page{size:A4 portrait;margin:0}}
+@media(max-width:700px){.hero-visual{overflow:hidden}}
+.hero-card img{width:100%;height:420px;object-fit:cover;object-position:center 26%;border-radius:9px;display:block}.gallery-art img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform .4s}.gallery-card:hover img{transform:scale(1.06)}
+@media(max-width:900px){.hero-card img{height:330px}}
+@media(max-width:700px){.hero-card img{height:313px}}
