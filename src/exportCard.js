@@ -1,11 +1,18 @@
 function roundedRect(ctx,x,y,w,h,r) { ctx.beginPath(); ctx.roundRect(x,y,w,h,r) }
 function textWrap(ctx,text,x,y,maxWidth,lineHeight,maxLines=3) {
-  let line=''; let count=0
+  const lines=['']
   for (const char of text) {
-    if (ctx.measureText(line+char).width > maxWidth && line) { ctx.fillText(line,x,y); y+=lineHeight; line=''; count++; if (count>=maxLines) break }
-    line+=char
+    const last=lines.length-1
+    if (ctx.measureText(lines[last]+char).width > maxWidth && lines[last]) lines.push('')
+    lines[lines.length-1]+=char
   }
-  if (line && count<maxLines) ctx.fillText(line,x,y)
+  if (lines.length>1 && [...lines.at(-1)].length<4) {
+    const prev=[...lines.at(-2)]
+    const moved=prev.splice(-Math.min(9,Math.floor(prev.length/2))).join('')
+    lines[lines.length-2]=prev.join('')
+    lines[lines.length-1]=moved+lines.at(-1)
+  }
+  lines.slice(0,maxLines).forEach((line,i)=>ctx.fillText(line,x,y+i*lineHeight))
 }
 
 export async function exportCard(identity) {
