@@ -15,7 +15,7 @@ function textWrap(ctx,text,x,y,maxWidth,lineHeight,maxLines=3) {
   lines.slice(0,maxLines).forEach((line,i)=>ctx.fillText(line,x,y+i*lineHeight))
 }
 
-export async function exportCard(identity) {
+export function exportCard(identity) {
   const canvas=document.createElement('canvas'); canvas.width=1080; canvas.height=1880
   const c=canvas.getContext('2d'); const {width:w,height:h}=canvas
   const bg=c.createLinearGradient(0,0,w,h); bg.addColorStop(0,'#0d1e31'); bg.addColorStop(.52,'#10152c'); bg.addColorStop(1,'#07141d'); c.fillStyle=bg; c.fillRect(0,0,w,h)
@@ -23,7 +23,7 @@ export async function exportCard(identity) {
   c.strokeStyle='#ffffff12'; c.lineWidth=1; for(let x=0;x<w;x+=54){c.beginPath();c.moveTo(x,0);c.lineTo(x,850);c.stroke()} for(let y=0;y<850;y+=54){c.beginPath();c.moveTo(0,y);c.lineTo(w,y);c.stroke()}
   // Draw the selected identity's bundled original illustration into the card.
   const img=document.querySelector('#result-art img'); if(img) {
-    await img.decode()
+    if (!img.complete || !img.naturalWidth) throw Error('Artwork has not loaded')
     const targetWidth=850,targetHeight=880
     const targetRatio=targetWidth/targetHeight, sourceRatio=img.naturalWidth/img.naturalHeight
     let sx=0,sy=0,sw=img.naturalWidth,sh=img.naturalHeight
@@ -48,5 +48,5 @@ export async function exportCard(identity) {
   c.fillStyle=identity.color;c.font='bold 22px Arial, sans-serif';c.fillText('PROMPT FRAGMENT',76,1740)
   c.fillStyle='#b8ced7';c.font='22px Arial, sans-serif';textWrap(c,identity.prompt,76,1780,930,30,2)
   c.fillStyle='#7893a5';c.font='21px Arial, sans-serif';c.fillText(`ID ${identity.serial}  •  #DonghaiIdentityLab`,76,1840)
-  return new Promise(resolve=>canvas.toBlob(blob=>resolve(blob),'image/png'))
+  return canvas.toDataURL('image/png')
 }
