@@ -21,6 +21,8 @@ export const questions = [
   ] }
 ]
 
+const imageSlugs = ['mechanical-star-cartographer','neon-protocol-architect','mist-harbor-inventor','forest-luminary','stargate-voyager','watercolor-dreamweaver','night-trace-detective','wasteland-light-collector','clockwork-archivist','quantum-dreamweaver','moonlit-guardian','stardust-codebreaker']
+
 export const archetypes = [
   { name: '机械星图师', tag: '机械 / 星空', symbol: 'orbital', blurb: '把废弃齿轮排成星图，在轰鸣的工坊里计算下一次黎明。', skill: '星轨校准：为团队找出混乱中最清晰的路线。', prompt: 'mechanical astronomer, brass astrolabe, luminous star charts', palette: ['#e9b96f','#77d8e7'], accent: '#e9b96f' },
   { name: '霓虹协议师', tag: '赛博 / 信号', symbol: 'circuit', blurb: '在午夜的光纤雨里编写新的规则，让失联的声音再次相遇。', skill: '信号共振：连接分散的线索与伙伴。', prompt: 'cyber signal architect, neon data rain, holographic circuits', palette: ['#67e8e0','#ad8cff'], accent: '#67e8e0' },
@@ -34,7 +36,7 @@ export const archetypes = [
   { name: '量子织梦者', tag: '赛博 / 艺术', symbol: 'circuit', blurb: '把算法织成有温度的画布，让冰冷的像素也学会讲故事。', skill: '像素编织：将信息重组为动人的表达。', prompt: 'quantum visual artist, iridescent pixels, futuristic studio', palette: ['#e5a9ff','#6ee4d7'], accent: '#e5a9ff' },
   { name: '月影守望者', tag: '奇幻 / 守护', symbol: 'moon', blurb: '在无人注意的角落点亮灯塔，温柔地挡住夜色最深的地方。', skill: '月光屏障：让同行者拥有继续前行的勇气。', prompt: 'moonlit guardian, silver cloak, enchanted lighthouse', palette: ['#b8bbff','#a3e8d9'], accent: '#b8bbff' },
   { name: '星尘译码员', tag: '星空 / 侦探', symbol: 'eye', blurb: '倾听宇宙背景里的微弱讯号，把遥远文明的问候译成诗。', skill: '星语解码：理解不同世界留下的讯息。', prompt: 'cosmic codebreaker, observatory, stardust data streams', palette: ['#f4cb98','#95b8ff'], accent: '#f4cb98' }
-]
+].map((item,i)=>({...item,image:`./cards/${imageSlugs[i]}.webp`}))
 
 export const palette = ['#65f0e2', '#b5a0ff', '#f5c979', '#ffa7c2']
 
