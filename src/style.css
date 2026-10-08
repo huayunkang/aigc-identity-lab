@@ -13,3 +13,47 @@
 @media(max-width:700px){.result-heading h1{font-size:28px;text-wrap:balance}}
 .preview-backdrop{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:#050914e8;backdrop-filter:blur(12px);padding:20px}.preview-modal{width:min(460px,100%);max-height:calc(100vh - 40px);overflow:auto;background:#111d2d;border:1px solid #83e5db75;border-radius:14px;padding:18px;box-shadow:0 30px 90px #000c}.preview-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.preview-modal-head strong{font-size:17px}.preview-modal-head button{border:0;background:none;color:#b8d5da}.preview-modal>img{display:block;width:100%;height:auto;border-radius:7px}.preview-modal-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}.preview-modal-actions a{display:inline-block;background:#8eece1;color:#082129;text-decoration:none;font-size:14px;font-weight:800;padding:12px 18px;border-radius:7px}.preview-modal-actions span{font-size:11px;color:#94abb7}
 @media(max-width:700px){.preview-modal-actions{flex-direction:column;align-items:stretch;text-align:center}.preview-modal-actions a{display:block}}
+
+/* Five-answer identity reveal */
+.identity-reveal{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:30px 20px;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--reveal-accent) 20%,#0a1024) 0%,#080e1d 47%,#050914 100%);isolation:isolate}
+.identity-reveal:before,.identity-reveal:after{content:'';position:absolute;inset:-60%;pointer-events:none}
+.identity-reveal:before{background:conic-gradient(from 0deg,transparent 0 36%,color-mix(in srgb,var(--reveal-accent) 34%,transparent) 39%,transparent 42% 86%,#ffffff1f 89%,transparent 92%);animation:revealSweep 5s linear infinite;opacity:.34}
+.identity-reveal:after{inset:0;background:repeating-linear-gradient(0deg,transparent 0 6px,#ffffff05 7px,transparent 8px);mix-blend-mode:screen;opacity:.45}
+.reveal-grid{position:absolute;inset:0;background-image:linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(circle at center,#000 6%,transparent 72%);animation:revealGrid 4s ease-in-out infinite alternate}
+.reveal-flare{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--reveal-accent) 36%,transparent),transparent 62%);filter:blur(28px);opacity:.55;animation:revealPulse 1.5s ease-in-out infinite alternate}
+.reveal-core{position:relative;z-index:1;width:min(60vw,300px);aspect-ratio:1;display:grid;place-items:center;margin-bottom:38px;filter:drop-shadow(0 0 32px color-mix(in srgb,var(--reveal-accent) 45%,transparent))}
+.reveal-core:before,.reveal-core:after{content:'';position:absolute;border-radius:50%}
+.reveal-core:before{inset:19%;border:1px solid #ffffff6e;box-shadow:0 0 26px var(--reveal-accent),inset 0 0 26px color-mix(in srgb,var(--reveal-accent) 50%,transparent);animation:revealPulse .8s ease-in-out infinite alternate}
+.reveal-core:after{inset:33%;background:radial-gradient(circle,#ffffff1f,transparent 70%);border:1px solid #ffffff65}
+.reveal-ring{position:absolute;border-radius:50%;border:2px solid transparent}
+.reveal-ring-outer{inset:0;border-top-color:var(--reveal-accent);border-bottom-color:#ffffff86;box-shadow:0 0 30px color-mix(in srgb,var(--reveal-accent) 40%,transparent);animation:revealSweep 2s linear infinite}
+.reveal-ring-outer:before,.reveal-ring-outer:after{content:'';position:absolute;inset:13px;border-radius:50%;border:1px dashed #ffffff65}
+.reveal-ring-outer:after{inset:34px;border-color:color-mix(in srgb,var(--reveal-accent) 70%,transparent)}
+.reveal-ring-inner{inset:12%;border-left-color:#fff;border-right-color:var(--reveal-accent);animation:revealSweep 1.3s linear infinite reverse}
+.reveal-emblem{z-index:2;color:#fff;font-size:clamp(70px,18vw,110px);line-height:1;text-shadow:0 0 22px var(--reveal-accent),0 0 65px var(--reveal-accent);animation:revealPulse .9s ease-in-out infinite alternate}
+.reveal-emblem span{display:block;text-align:center;font:10px 'DM Mono',monospace;letter-spacing:.35em;margin-top:3px;color:#d7f6fa;text-shadow:none}
+.reveal-ray{position:absolute;z-index:3;width:145%;height:2px;background:linear-gradient(90deg,transparent,var(--reveal-accent),#fff,var(--reveal-accent),transparent);box-shadow:0 0 22px 5px var(--reveal-accent);animation:revealRay 1.6s ease-in-out infinite}
+.reveal-copy{position:relative;z-index:2;text-align:center;width:min(470px,100%)}
+.reveal-copy>span{font:10px 'DM Mono',monospace;letter-spacing:.25em;color:var(--reveal-accent)}
+.reveal-copy h2{font-size:clamp(26px,6vw,42px);letter-spacing:-.035em;margin:15px 0 9px;color:#f4fbff;text-shadow:0 0 40px color-mix(in srgb,var(--reveal-accent) 55%,transparent)}
+.reveal-copy p{font-size:13px;color:#afc6d0;margin:0 0 26px}
+.reveal-progress{height:3px;background:#ffffff29;border-radius:3px;overflow:hidden;box-shadow:0 0 16px #ffffff13}
+.reveal-progress i{display:block;width:100%;height:100%;background:linear-gradient(90deg,var(--reveal-accent),#fff);transform-origin:left;animation:revealProgress 1.6s linear forwards;box-shadow:0 0 16px var(--reveal-accent)}
+.reveal-skip{position:absolute;z-index:4;bottom:max(30px,env(safe-area-inset-bottom));border:1px solid #ffffff55;background:#ffffff0c;color:#d7e9ef;border-radius:100px;padding:10px 18px;font-size:12px;letter-spacing:.04em;backdrop-filter:blur(12px)}
+.reveal-skip:hover{background:#ffffff26;border-color:#fff}
+.identity-reveal-unveiling .reveal-core{animation:revealBurst .65s ease-in forwards}
+.identity-reveal-unveiling .reveal-flare{animation:revealFlash .65s ease-out forwards}
+.identity-reveal-unveiling .reveal-progress i{animation:none;transform:scaleX(1)}
+.reveal-finished .result-heading{animation:revealCardIn .7s both}
+.reveal-finished .result-layout{animation:revealCardIn .85s cubic-bezier(.18,.8,.2,1) both}
+.reveal-finished .result-actions{animation:revealCardIn .85s .12s both}
+@keyframes revealSweep{to{transform:rotate(360deg)}}
+@keyframes revealGrid{to{transform:scale(1.13);opacity:.4}}
+@keyframes revealPulse{to{transform:scale(1.07);opacity:1}}
+@keyframes revealRay{0%{transform:translateY(-90px);opacity:0}24%,70%{opacity:.9}100%{transform:translateY(110px);opacity:0}}
+@keyframes revealProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes revealBurst{35%{transform:scale(.8);opacity:1}100%{transform:scale(3.8);opacity:0}}
+@keyframes revealFlash{0%{opacity:.2;transform:scale(.7)}45%{opacity:1;transform:scale(1.2)}100%{opacity:0;transform:scale(2)}}
+@keyframes revealCardIn{from{opacity:0;transform:translateY(52px) scale(.97);filter:blur(14px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@media(max-width:700px){.reveal-core{width:min(68vw,270px);margin-bottom:31px}.reveal-copy h2{font-size:27px}.reveal-copy p{font-size:12px}.identity-reveal:before{opacity:.22}}
+@media(prefers-reduced-motion:reduce){.identity-reveal{display:none}.reveal-finished .result-heading,.reveal-finished .result-layout,.reveal-finished .result-actions{animation:none}}
